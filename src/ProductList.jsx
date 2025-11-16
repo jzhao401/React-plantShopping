@@ -5,6 +5,8 @@ import CartItem from './CartItem';
 function ProductList({ onHomeClick }) {
     const [showCart, setShowCart] = useState(false);
     const [showPlants, setShowPlants] = useState(false); // State to control of the About Us page
+    // State to track products added to the cart
+    const [addedToCart, setAddedToCart] = useState([]);
 
     const plantsArray = [
         {
