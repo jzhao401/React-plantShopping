@@ -15,17 +15,24 @@ export const CartSlice = createSlice({
         state.items.push({ ...newItem, quantity: 1 });
       }
     },
+    // Remove an item from the cart by its name.
+    // Accepts either a plain string (item name) or an object { name }.
     removeItem: (state, action) => {
-      const nameToRemove = action.payload;
+      const nameToRemove =
+        typeof action.payload === 'string' ? action.payload : action.payload.name;
       state.items = state.items.filter((item) => item.name !== nameToRemove);
     },
+    // Update the quantity of a specific cart item.
+    // Expects payload: { name, amount } where `amount` is the new quantity.
     updateQuantity: (state, action) => {
-      const { name, quantity } = action.payload;
+      const { name, amount } = action.payload;
       const item = state.items.find((i) => i.name === name);
-      if (item && quantity > 0) {
-        item.quantity = quantity;
-      } else if (item && quantity <= 0) {
-        // Remove item if quantity set to 0 or less
+      if (!item) return; // No matching item – nothing to do
+
+      if (amount > 0) {
+        item.quantity = amount;
+      } else {
+        // If the new amount is 0 or negative, remove the item from the cart
         state.items = state.items.filter((i) => i.name !== name);
       }
     },
