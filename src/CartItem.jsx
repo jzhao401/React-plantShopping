@@ -24,7 +24,14 @@ const CartItem = ({ onContinueShopping }) => {
   };
 
   const handleContinueShopping = (e) => {
-   
+    // Prevent default link/button behavior if present
+    if (e && typeof e.preventDefault === 'function') {
+      e.preventDefault();
+    }
+    // Invoke the callback supplied by the parent to return to the product list
+    if (typeof onContinueShopping === 'function') {
+      onContinueShopping(e);
+    }
   };
 
 
