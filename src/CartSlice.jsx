@@ -42,3 +42,14 @@ export const CartSlice = createSlice({
 export const { addItem, removeItem, updateQuantity } = CartSlice.actions;
 
 export default CartSlice.reducer;
+
+// ---------------------------------------------------------------------------
+// Selectors
+// ---------------------------------------------------------------------------
+
+/** Returns the array of cart items */
+export const selectCartItems = (state) => state.cart.items;
+
+/** Returns the total quantity of all items in the cart */
+export const selectTotalQuantity = (state) =>
+  state.cart.items.reduce((sum, item) => sum + item.quantity, 0);
