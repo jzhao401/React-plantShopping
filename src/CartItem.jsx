@@ -9,7 +9,18 @@ const CartItem = ({ onContinueShopping }) => {
 
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
- 
+    // Sum each item's cost multiplied by its quantity.
+    // `item.cost` may be a number or a string (e.g., "$12.99").
+    // Convert to a numeric value before the calculation.
+    const total = cart.reduce((sum, item) => {
+      const numericCost = typeof item.cost === 'string'
+        ? parseFloat(item.cost.replace(/[^0-9.-]+/g, ''))
+        : item.cost;
+      return sum + (numericCost * item.quantity);
+    }, 0);
+
+    // Return a string with two decimal places for display.
+    return total.toFixed(2);
   };
 
   const handleContinueShopping = (e) => {
@@ -64,5 +75,3 @@ const CartItem = ({ onContinueShopping }) => {
 };
 
 export default CartItem;
-
-
