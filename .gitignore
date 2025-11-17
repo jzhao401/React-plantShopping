@@ -1,24 +1,50 @@
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
+# Python
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+*.pyd
+venv/
+.venv/
+env/
+.env
 
-node_modules
-dist
-dist-ssr
-*.local
+# Testing
+.coverage
+.pytest_cache/
+htmlcov/
+.hypothesis/
+*.cover
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+
+# Project-specific
+CHECKPOINT.json
+.claude/
+.memory/archives/*.json
+outputs/
+*.log
+
+# LangSmith/AgentOps
+.langsmith/
+.agentops/
+
+# Data files
+data/checkpoints.db
+data/checkpoints.db-shm
+data/checkpoints.db-wal
+data/raw/*.pdf
+
+# Build
+dist/
+build/
+*.egg-info/
+
+# Aider config
+.aider.conf.yml
+.aider*
