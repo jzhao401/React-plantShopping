@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import './ProductList.css';
-import CartItem from './CartItem';
-import { useDispatch, useSelector } from 'react-redux';
-import { addItem, selectTotalQuantity } from './CartSlice';
+import React, { useState, useEffect } from "react";
+import "./ProductList.css";
+import CartItem from "./CartItem";
+import { useDispatch, useSelector } from "react-redux";
+import { addItem, selectTotalQuantity } from "./CartSlice";
 
 function ProductList({ onHomeClick }) {
   const [showCart, setShowCart] = useState(false);
@@ -16,269 +16,267 @@ function ProductList({ onHomeClick }) {
 
   const plantsArray = [
     {
-      category: 'Air Purifying Plants',
+      category: "Air Purifying Plants",
       plants: [
         {
-          name: 'Snake Plant',
+          name: "Snake Plant",
           image:
-            'https://cdn.pixabay.com/photo/2021/01/22/06/04/snake-plant-5939187_1280.jpg',
-          description: 'Produces oxygen at night, improving air.',
-          cost: '$15',
+            "https://cdn.pixabay.com/photo/2021/01/22/06/04/snake-plant-5939187_1280.jpg",
+          description: "Produces oxygen at night, improving air.",
+          cost: "$15",
         },
         {
-          name: 'Spider Plant',
+          name: "Spider Plant",
           image:
-            'https://cdn.pixabay.com/photo/8/07/11/06/47/chlorophytum-3530413_1280.jpg',
-          description: 'Filters formaldehyde and xylene from the air.',
-          cost: '$12',
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Hierbabuena_0611_Revised.jpg/1920px-Hierbabuena_0611_Revised.jpg",
+          description: "Filters formaldehyde and xylene from the air.",
+          cost: "$12",
         },
         {
-          name: 'Peace Lily',
+          name: "Peace Lily",
           image:
-            'https://cdn.pixabay.com/photo/2019/06/12/14/14/peace-lilies-4269365_1280.jpg',
-          description: 'Removes mold spores and purifies the air.',
-          cost: '$18',
+            "https://cdn.pixabay.com/photo/2019/06/12/14/14/peace-lilies-4269365_1280.jpg",
+          description: "Removes mold spores and purifies the air.",
+          cost: "$18",
         },
         {
-          name: 'Boston Fern',
+          name: "Boston Fern",
           image:
-            'https://cdn.pixabay.com/photo/2020/04/30/19/52/boston-fern-5114414_1280.jpg',
-          description: 'Adds humidity to the air and removes toxins.',
-          cost: '$20',
+            "https://cdn.pixabay.com/photo/2020/04/30/19/52/boston-fern-5114414_1280.jpg",
+          description: "Adds humidity to the air and removes toxins.",
+          cost: "$20",
         },
         {
-          name: 'Rubber Plant',
+          name: "Rubber Plant",
           image:
-            'https://cdn.pixabay.com/photo/2020/02/15/11/49/flower-4850729_1280.jpg',
-          description: 'Easy to care for and effective at removing toxins.',
-          cost: '$17',
+            "https://cdn.pixabay.com/photo/2020/02/15/11/49/flower-4850729_1280.jpg",
+          description: "Easy to care for and effective at removing toxins.",
+          cost: "$17",
         },
         {
-          name: 'Aloe Vera',
+          name: "Aloe Vera",
           image:
-            'https://cdn.pixabay.com/photo/2018/04/02/07/42/leaf-3283175_1280.jpg',
-          description: 'Purifies the air and has healing properties for skin.',
-          cost: '$14',
+            "https://cdn.pixabay.com/photo/2018/04/02/07/42/leaf-3283175_1280.jpg",
+          description: "Purifies the air and has healing properties for skin.",
+          cost: "$14",
         },
       ],
     },
     {
-      category: 'Aromatic Fragrant Plants',
+      category: "Aromatic Fragrant Plants",
       plants: [
         {
-          name: 'Lavender',
+          name: "Lavender",
           image:
-            'https://images.unsplash.com/photo-1611909023032-2d6b3134ecba?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-          description: 'Calming scent, used in aromatherapy.',
-          cost: '$20',
+            "https://images.unsplash.com/photo-1611909023032-2d6b3134ecba?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          description: "Calming scent, used in aromatherapy.",
+          cost: "$20",
         },
         {
-          name: 'Jasmine',
+          name: "Jasmine",
           image:
-            'https://images.unsplash.com/photo-1592729645009-b96d1e63d14b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8ffHx8fA%3D%3D',
-          description: 'Sweet fragrance, promotes relaxation.',
-          cost: '$18',
+            "https://images.unsplash.com/photo-1592729645009-b96d1e63d14b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8ffHx8fA%3D%3D",
+          description: "Sweet fragrance, promotes relaxation.",
+          cost: "$18",
         },
         {
-          name: 'Rosemary',
+          name: "Rosemary",
           image:
-            'https://cdn.pixabay.com/photo/2019/10/11/07/12/rosemary-4541241_1280.jpg',
-          description: 'Invigorating scent, often used in cooking.',
-          cost: '$15',
+            "https://cdn.pixabay.com/photo/2019/10/11/07/12/rosemary-4541241_1280.jpg",
+          description: "Invigorating scent, often used in cooking.",
+          cost: "$15",
         },
         {
-          name: 'Mint',
+          name: "Mint",
           image:
-            'https://cdn.pixabay.com/photo/2016/01/07/18/16/mint-11262821280.jpg',
-          description: 'Refreshing aroma, used in teas and cooking.',
-          cost: '$12',
+            "https://upload.wikimedia.org/wikipedia/commons/a/a8/Lamium_purpureum_jamestown1.jpg",
+          description: "Refreshing aroma, used in teas and cooking.",
+          cost: "$12",
         },
         {
-          name: 'Lemon Balm',
+          name: "Lemon Balm",
           image:
-            'https://cdn.pixabay.com/photo/2019/09/16/07/41/balm-4480134_1280.jpg',
-          description: 'Citrusy scent, relieves stress and promotes sleep.',
-          cost: '$14',
+            "https://cdn.pixabay.com/photo/2019/09/16/07/41/balm-4480134_1280.jpg",
+          description: "Citrusy scent, relieves stress and promotes sleep.",
+          cost: "$14",
         },
         {
-          name: 'Hyacinth',
+          name: "Hyacinth",
           image:
-            'https://cdn.pixabay.com/photo/2019/04/07/20/20/hyacinth-4110726_1280.jpg',
+            "https://cdn.pixabay.com/photo/2019/04/07/20/20/hyacinth-4110726_1280.jpg",
           description:
-            'Beautiful flowering plant known for its fragrant scent.',
-          cost: '$22',
+            "Beautiful flowering plant known for its fragrant scent.",
+          cost: "$22",
         },
       ],
     },
     {
-      category: 'Insectellent Plants',
+      category: "Insectellent Plants",
       plants: [
         {
-          name: 'Oregano',
+          name: "Oregano",
           image:
-            'https://cdn.pixabay.com/photo/2015/05/30/21/20/oregano-790702_1280.jpg',
+            "https://cdn.pixabay.com/photo/2015/05/30/21/20/oregano-790702_1280.jpg",
+          description: "Contains compounds that can deter certain insects.",
+          cost: "$10",
+        },
+        {
+          name: "Marigold",
+          image:
+            "https://upload.wikimedia.org/wikipedia/commons/0/08/French_marigold.jpg",
           description:
-            'Contains compounds that can deter certain insects.',
-          cost: '$10',
+            "Natural insect repellent, also adds color to the garden.",
+          cost: "$8",
         },
         {
-          name: 'Marigold',
+          name: "Geraniums",
           image:
-            'https://cdn.pixabay.com/photo/2022/02/22/05/45arigold-7028063_1280.jpg',
-          description: 'Natural insect repellent, also adds color to the garden.',
-          cost: '$8',
-        },
-        {
-          name: 'Geraniums',
-          image:
-            'https://cdn.pixabay.com/photo/2012/04/26/21/51/flowerpot-43270_1280.jpg',
+            "https://cdn.pixabay.com/photo/2012/04/26/21/51/flowerpot-43270_1280.jpg",
           description:
-            'Known for their insect-repelling properties while adding a pleasant scent.',
-          cost: '$20',
+            "Known for their insect-repelling properties while adding a pleasant scent.",
+          cost: "$20",
         },
         {
-          name: 'Basil',
+          name: "Basil",
           image:
-            'https://cdn.pixabay.com/photo/2016/07/24/20/48/tulsi-1539181_1280.jpg',
-          description: 'Repels flies and mosquitoes, also used in cooking.',
-          cost: '$9',
+            "https://cdn.pixabay.com/photo/2016/07/24/20/48/tulsi-1539181_1280.jpg",
+          description: "Repels flies and mosquitoes, also used in cooking.",
+          cost: "$9",
         },
         {
-          name: 'Lavender',
+          name: "Lavender",
           image:
-            'https://images.unsplash.com/photo-161190902303-2d6b3134ecba?q=&w=1074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=3wxMjA3DB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-          description: 'Calming scent, used in aromatherapy.',
-          cost: '$20',
+            "https://upload.wikimedia.org/wikipedia/commons/7/7e/Single_lavender_flower02.jpg",
+          description: "Calming scent, used in aromatherapy.",
+          cost: "$20",
         },
         {
-          name: 'Catnip',
+          name: "Catnip",
           image:
-            'https://cdn.pixabay.com/photo/2015/07/02/21/55/c-829681_1280.jpg',
-          description: 'Repels mosquitoes and attracts cats.',
-          cost: '$13',
+            "https://cdn.pixabay.com/photo/2015/07/02/21/55/c-829681_1280.jpg",
+          description: "Repels mosquitoes and attracts cats.",
+          cost: "$13",
         },
       ],
     },
     {
-      category: 'Medicinal Plants',
+      category: "Medicinal Plants",
       plants: [
         {
-          name: 'Aloe Vera',
+          name: "Aloe Vera",
           image:
-            'https://cdn.pixabay.com/photo/2018/04/02/07/42/leaf-3283175_1280.jpg',
-          description: 'Soothing gel used for skin ailments.',
-          cost: '$14',
+            "https://cdn.pixabay.com/photo/2018/04/02/07/42/leaf-3283175_1280.jpg",
+          description: "Soothing gel used for skin ailments.",
+          cost: "$14",
         },
         {
-          name: 'Echinacea',
-          image: 'https://cdn2014/1203/53/echinacea-557477_1280.jpg',
-          description: 'Boosts immune system, helps colds.',
-          cost: '$16',
+          name: "Echinacea",
+          image:
+            "https://upload.wikimedia.org/wikipedia/commons/b/b4/EchinaceaPurpureaMaxima1a.UME.JPG",
+          description: "Boosts immune system, helps colds.",
+          cost: "$16",
         },
         {
-          name: 'Peppermint',
+          name: "Peppermint",
           image:
-            'https://cdn.pixabay.com/photo/2017/07/12/12/23/peppermint-2496773_1280.jpg',
-          description: 'Relieves digestive issues.',
-          cost: '$13',
+            "https://cdn.pixabay.com/photo/2017/07/12/12/23/peppermint-2496773_1280.jpg",
+          description: "Relieves digestive issues.",
+          cost: "$13",
         },
         {
-          name: 'Lemon Balm',
+          name: "Lemon Balm",
           image:
-            'https://cdn.pixabay.com/photo/2019/09/16/07/41/balm-0134_1280.jpg',
-          description: 'Calms nerves and promotes relaxation.',
-          cost: '$14',
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Lemon_balm_plant.jpg/1280px-Lemon_balm_plant.jpg",
+          description: "Calms nerves and promotes relaxation.",
+          cost: "$14",
         },
         {
-          name: 'Chamomile',
+          name: "Chamomile",
           image:
-            'https://cdn.pixabay.com/photo/2016/08/19/19/48/flowers-1606041_1280.jpg',
-          description: 'Soothes anxiety and promotes sleep.',
-          cost: '$15',
+            "https://cdn.pixabay.com/photo/2016/08/19/19/48/flowers-1606041_1280.jpg",
+          description: "Soothes anxiety and promotes sleep.",
+          cost: "$15",
         },
         {
-          name: 'Calendula',
+          name: "Calendula",
           image:
-            'https://cdn.pixabay.com/photo/2019/07/15/18/28/flowers-4340127_1280.jpg',
-          description: 'Heals wounds and soothes skin.',
-          cost: '$12',
+            "https://cdn.pixabay.com/photo/2019/07/15/18/28/flowers-4340127_1280.jpg",
+          description: "Heals wounds and soothes skin.",
+          cost: "$12",
         },
       ],
     },
     {
-      category: 'Low Maintenance Plants',
+      category: "Low Maintenance Plants",
       plants: [
         {
-          name: 'ZZ Plant',
+          name: "ZZ Plant",
           image:
-            'https://images.unsplash.com/photo-1632207693-643e2a9a9361?q=80&w=464&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Zamioculcas_zamiifolia_1.jpg/1280px-Zamioculcas_zamiifolia_1.jpg",
+          description: "Thrives in low light and requires minimal watering.",
+          cost: "$25",
+        },
+        {
+          name: "Pothos",
+          image:
+            "https://cdn.pixabay.com/photo/2018/11/15/10/32/plants-3816945_1280.jpg",
+          description: "Tolerates neglect and can grow in various conditions.",
+          cost: "$10",
+        },
+        {
+          name: "Snake Plant",
+          image:
+            "https://cdn.pixabay.com/photo/2021/01/22/06/04/snake-plant-5939187_1280.jpg",
           description:
-            'Thrives in low light and requires minimal watering.',
-          cost: '$25',
+            "Needs infrequent watering and is resilient to most pests.",
+          cost: "$15",
         },
         {
-          name: 'Pothos',
+          name: "Cast Iron Plant",
           image:
-            'https://cdn.pixabay.com/photo/2018/11/15/10/32/plants-3816945_1280.jpg',
-          description:
-            'Tolerates neglect and can grow in various conditions.',
-          cost: '$10',
+            "https://cdn.pixabay.com/photo/2017/02/16/18/04/cast-plant-2072008_1280.jpg",
+          description: "Hardy, tolerates low light and neglect.",
+          cost: "$20",
         },
         {
-          name: 'Snake Plant',
+          name: "Succulents",
           image:
-            'https://cdn.pixabay.com/photo/2021/01/22/06/04/snake-plant-5939187_1280.jpg',
-          description:
-            'Needs infrequent watering and is resilient to most pests.',
-          cost: '$15',
+            "https://cdn.pixabay.com/photo/2016/11/21/16/05/cacti-1846147_1280.jpg",
+          description: "Drought-tolerant plants with unique shapes and colors.",
+          cost: "$18",
         },
         {
-          name: 'Cast Iron Plant',
+          name: "Aglaonema",
           image:
-            'https://cdn.pixabay.com/photo/2017/02/16/18/04/cast-plant-2072008_1280.jpg',
-          description: 'Hardy, tolerates low light and neglect.',
-          cost: '$20',
-        },
-        {
-          name: 'Succulents',
-          image:
-            'https://cdn.pixabay.com/photo/2016/11/21/16/05/cacti-1846147_1280.jpg',
-          description: 'Drought-tolerant plants with unique shapes and colors.',
-          cost: '$18',
-        },
-        {
-          name: 'Aglaonema',
-          image:
-            'https://cdn.pixabay.com/photo/2014/10/10/04/27/aglaonema-482915_1280.jpg',
-          description:
-            'Requires minimal care and adds color to indoor spaces.',
-          cost: '$22',
+            "https://cdn.pixabay.com/photo/2014/10/10/04/27/aglaonema-482915_1280.jpg",
+          description: "Requires minimal care and adds color to indoor spaces.",
+          cost: "$22",
         },
       ],
     },
   ];
 
   const styleObj = {
-    backgroundColor: '#4CAF50',
-    color: '#fff!important',
-    padding: '15px',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    fontSize: '20px',
+    backgroundColor: "#4CAF50",
+    color: "#fff!important",
+    padding: "15px",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    fontSize: "20px",
   };
 
   const styleObjUl = {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '1100px',
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "1100px",
   };
 
   const styleA = {
-    color: 'white',
-    fontSize: '30px',
-    textDecoration: 'none',
+    color: "white",
+    fontSize: "30px",
+    textDecoration: "none",
   };
 
   const handleHomeClick = (e) => {
@@ -289,6 +287,7 @@ function ProductList({ onHomeClick }) {
   const handleCartClick = (e) => {
     e.preventDefault();
     setShowCart(true); // Set showCart to true when cart icon is clicked
+    setShowPlants(false);
   };
 
   const handlePlantsClick = (e) => {
@@ -323,15 +322,15 @@ function ProductList({ onHomeClick }) {
               alt="logo"
             />
             <a href="/" onClick={handleHomeClick}>
-              <div>
-                <h3 style={{ color: 'white' }}>Paradise Nursery</h3>
-                <i style={{ color: 'white' }}>Where Green Meets Serenity</i>
+              <div style={{ paddingLeft: "20px" }}>
+                <h3 style={{ color: "white" }}>Paradise Nursery</h3>
+                <i style={{ color: "white" }}>Where Green Meets Serenity</i>
               </div>
             </a>
           </div>
         </div>
         <div style={styleObjUl}>
-          <div>
+          <div style={{ flexGrow: 1, textAlign: "center" }}>
             <a href="#" onClick={handlePlantsClick} style={styleA}>
               Plants
             </a>
@@ -371,25 +370,45 @@ function ProductList({ onHomeClick }) {
         <div className="product-grid">
           {/* Render plant categories and their plants */}
           {plantsArray.map((categoryObj) => (
-            <div key={categoryObj.category} className="category-section">
-              <h2 className="category-title">{categoryObj.category}</h2>
-              <div className="plants-container">
+            <div
+              key={categoryObj.category}
+              className="category-section"
+              style={{
+                textAlign: "center",
+              }}
+            >
+              <h1
+                className="category-title"
+                style={{
+                  marginTop: "30px" /* Creates a 20-pixel gap above this div */,
+                  marginBottom: "30px",
+                }}
+              >
+                {categoryObj.category}
+              </h1>
+              <div className="product-list">
                 {categoryObj.plants.map((plant) => (
-                  <div key={plant.name} className="plant-card">
+                  <div key={plant.name} className="product-card">
                     <img
                       src={plant.image}
                       alt={plant.name}
-                      className="plant-image"
+                      className="product-image"
                     />
-                    <h3 className="plant-name">{plant.name}</h3>
+                    <h3 className="product-title">{plant.name}</h3>
                     <p className="plant-description">{plant.description}</p>
-                    <p className="plant-cost">{plant.cost}</p>
+                    <p className="product-price">{plant.cost}</p>
                     <button
-                      className="add-to-cart-button"
+                      className={
+                        addedToCart[plant.name]
+                          ? "product-button added-to-cart"
+                          : "product-button"
+                      }
                       onClick={() => handleAddtoCart(plant)}
                       disabled={addedToCart[plant.name]}
                     >
-                      {addedToCart[plant.name] ? 'Added to Cart' : 'Add to Cart'}
+                      {addedToCart[plant.name]
+                        ? "Added to Cart"
+                        : "Add to Cart"}
                     </button>
                   </div>
                 ))}
