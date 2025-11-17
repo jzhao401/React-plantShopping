@@ -34,7 +34,15 @@ const CartItem = ({ onContinueShopping }) => {
     }
   };
 
-
+  // Simple checkout handler – currently just logs a message.
+  const handleCheckoutShopping = (e) => {
+    // Prevent default button behavior if present
+    if (e && typeof e.preventDefault === 'function') {
+      e.preventDefault();
+    }
+    // Placeholder action for checkout
+    console.log('Checkout button clicked – implement checkout flow here.');
+  };
 
   const handleIncrement = (item) => {
   };
@@ -75,7 +83,7 @@ const CartItem = ({ onContinueShopping }) => {
       <div className="continue_shopping_btn">
         <button className="get-started-button" onClick={(e) => handleContinueShopping(e)}>Continue Shopping</button>
         <br />
-        <button className="get-started-button1">Checkout</button>
+        <button className="get-started-button1" onClick={(e) => handleCheckoutShopping(e)}>Checkout</button>
       </div>
     </div>
   );
