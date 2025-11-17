@@ -44,11 +44,30 @@ const CartItem = ({ onContinueShopping }) => {
     console.log('Checkout button clicked – implement checkout flow here.');
   };
 
+  // Increment the quantity of a cart item by 1
   const handleIncrement = (item) => {
+    dispatch(
+      updateQuantity({
+        name: item.name,
+        amount: item.quantity + 1,
+      })
+    );
   };
 
+  // Decrement the quantity of a cart item.
+  // If the resulting quantity would be 0, remove the item from the cart.
   const handleDecrement = (item) => {
-   
+    if (item.quantity > 1) {
+      dispatch(
+        updateQuantity({
+          name: item.name,
+          amount: item.quantity - 1,
+        })
+      );
+    } else {
+      // Quantity would drop to 0 → remove the item entirely
+      dispatch(removeItem(item.name));
+    }
   };
 
   const handleRemove = (item) => {
