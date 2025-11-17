@@ -79,6 +79,14 @@ const CartItem = ({ onContinueShopping }) => {
 
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
+    // Extract numeric value from the cost string (e.g., "$15" → 15)
+    const numericCost =
+      typeof item.cost === 'string'
+        ? parseFloat(item.cost.replace(/[^0-9.-]+/g, ''))
+        : item.cost;
+    const total = numericCost * item.quantity;
+    // Return a string with two decimal places for display
+    return total.toFixed(2);
   };
 
   return (

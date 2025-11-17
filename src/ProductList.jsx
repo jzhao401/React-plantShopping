@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './ProductList.css';
 import CartItem from './CartItem';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from './CartSlice';
 
 function ProductList({ onHomeClick }) {
@@ -10,6 +10,13 @@ function ProductList({ onHomeClick }) {
   // State to track products added to the cart
   const [addedToCart, setAddedToCart] = useState({});
   const dispatch = useDispatch();
+
+  // Get cart items to compute total quantity for the cart badge
+  const cartItems = useSelector((state) => state.cart.items);
+  const totalCartQuantity = cartItems.reduce(
+    (sum, item) => sum + item.quantity,
+    0
+  );
 
   const plantsArray = [
     {
@@ -355,6 +362,10 @@ function ProductList({ onHomeClick }) {
                   ></path>
                 </svg>
               </h1>
+              {/* Cart badge showing total quantity */}
+              {totalCartQuantity > 0 && (
+                <span className="cart-badge">{totalCartQuantity}</span>
+              )}
             </a>
           </div>
         </div>
@@ -382,7 +393,7 @@ function ProductList({ onHomeClick }) {
                       onClick={() => handleAddtoCart(plant)}
                       disabled={addedToCart[plant.name]}
                     >
-                      {addedToCart[plant.name] ? 'Added' : 'Add to Cart'}
+                      {addedToCart[plant.name] ? 'Added to Cart' : 'Add to Cart'}
                     </button>
                   </div>
                 ))}
