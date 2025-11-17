@@ -71,6 +71,10 @@ const CartItem = ({ onContinueShopping }) => {
   };
 
   const handleRemove = (item) => {
+    // Dispatch the Redux action to remove the item from the cart.
+    // `removeItem` accepts either a string (item name) or an object { name }.
+    // Here we pass the name directly for clarity.
+    dispatch(removeItem(item.name));
   };
 
   // Calculate total cost based on quantity for an item
